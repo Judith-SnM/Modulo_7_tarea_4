@@ -1,4 +1,4 @@
-import dotenv from 'dotenv';
+import 'dotenv/config';
 import express from 'express';
 import pkg from 'pg';
 import { fileURLToPath } from 'url'; 
@@ -15,13 +15,12 @@ const port = 3004;
 app.use(express.static(path.join(__dirname, 'public')));
 
 const pool = new Pool({
-  user: 'tu_usuario',
-  host: 'localhost',
-  database: 'repertorio',
-  password: 'tu_contraseña',
-  port: 5432,
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB_NAME,
+  password: process.env.DB_PASSWORD,
+  port: process.env.DB_PORT,
 });
-
 
 app.use(express.json());
 
